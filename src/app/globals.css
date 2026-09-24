@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+/*
+  FLASH TALE — RETRO EDITORIAL DESIGN TOKENS
+  Inspired by analog film photography, vintage editorial print, and darkroom craft.
+  - Paper / Wheat: #E6CFA7 (Parchment primary light background)
+  - Paper Light / Warm Cream: #F2E4C5 (Soft highlight & text on dark)
+  - Forest / Feldgrau: #3A4B41 (Deep forest green major background field)
+  - Ink / Forest Dark: #26372F (Deep ink green for typography & contrast)
+  - Olive: #69745D (Soft olive for secondary metadata & tags)
+  - Terracotta: #B76E50 (Muted terracotta for interaction & accents)
+  - Terracotta Bright: #CA7D5E (Hover states)
+*/
+:root {
+  --paper: #e6cfa7;
+  --paper-light: #f2e4c5;
+  --forest: #3a4b41;
+  --forest-dark: #26372f;
+  --ink: #26372f;
+  --ink-muted: #53645b;
+  --cream: #f2e4c5;
+  --cream-dim: #d5c29d;
+  --olive: #69745d;
+  --olive-light: #849177;
+  --terracotta: #b76e50;
+  --terracotta-bright: #ca7d5e;
+  --line-light: rgba(58, 75, 65, 0.15);
+  --line-dark: rgba(242, 228, 197, 0.15);
+  --line: var(--line-light);
+
+  /* Legacy aliases mapped semantically to avoid breakage */
+  --void: #26372f;
+  --void-raised: #1f2d26;
+  --teal: #3a4b41;
+  --teal-bright: #69745d;
+  --ember: #b76e50;
+  --ember-bright: #ca7d5e;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-light: var(--paper-light);
+  --color-forest: var(--forest);
+  --color-forest-dark: var(--forest-dark);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-cream: var(--cream);
+  --color-cream-dim: var(--cream-dim);
+  --color-olive: var(--olive);
+  --color-olive-light: var(--olive-light);
+  --color-terracotta: var(--terracotta);
+  --color-terracotta-bright: var(--terracotta-bright);
+  --color-line: var(--line);
+  --color-line-dark: var(--line-dark);
+
+  /* Legacy color aliases mapped to semantic tokens */
+  --color-void: var(--forest-dark);
+  --color-void-raised: var(--void-raised);
+  --color-teal: var(--forest);
+  --color-teal-bright: var(--olive-light);
+  --color-ember: var(--terracotta);
+  --color-ember-bright: var(--terracotta-bright);
+
+  --font-display: var(--font-big-shoulders);
+  --font-body: var(--font-instrument);
+}
+
+html {
+  background: var(--paper);
+  scroll-behavior: auto;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--terracotta);
+  color: var(--paper-light);
+}
+
+/* Visible keyboard focus everywhere */
+:focus-visible {
+  outline: 2px solid var(--terracotta);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Custom cinematic cursor support — desktop fine pointer only */
+@media (hover: hover) and (pointer: fine) {
+  html.has-custom-cursor,
+  html.has-custom-cursor body,
+  html.has-custom-cursor a,
+  html.has-custom-cursor button,
+  html.has-custom-cursor [role="button"] {
+    cursor: none;
+  }
+  html.has-custom-cursor input,
+  html.has-custom-cursor textarea {
+    cursor: text;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .has-custom-cursor,
+  .has-custom-cursor * {
+    cursor: auto !important;
+  }
+}
+
+
