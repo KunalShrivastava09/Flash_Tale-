@@ -39,7 +39,7 @@ export interface Project {
   description?: string;
   credits?: ProjectCredits;
   gallery?: ProjectGalleryItem[];
-  aspectRatio?: "cinema" | "video" | "wide";
+  aspectRatio?: "cinema" | "video" | "wide" | "portrait";
   featured?: boolean;
 }
 
@@ -60,40 +60,22 @@ export const projects: Project[] = [
   },
   {
     id: "02",
-    slug: "chronicle-of-light",
-    title: "CHRONICLE OF LIGHT",
-    category: "COMMERCIAL / CREATIVE DIRECTION",
-    year: "2025",
-    aspectRatio: "video",
+    slug: "portrait-study",
+    title: "PORTRAIT STUDY",
+    category: "PHOTOGRAPHY",
+    year: "2026",
+    aspectRatio: "portrait",
+    thumbnail: "/media/projects/project-02/portrait-study-01.jpg",
     hero: {
       type: "image",
-      image: "/media/projects/chronicle-hero.jpg",
-      alt: "Chronicle of Light — Sculptural Studio Key Visual",
-    },
-    description:
-      "A cinematic visual study of daylight transitions and sculptural form, crafted for an editorial high-fashion and spatial design campaign.",
-    credits: {
-      director: "DEV YADAV",
-      production: "STUDIO ARCHIVE",
-      colorGrade: "NATURAL LIGHT CONTRAST",
-      aspectRatio: "16:9 CINEMA",
-      year: "2025",
+      alt: "Editorial portrait photography",
     },
     gallery: [
       {
-        alt: "Chronicle of Light — Geometric shadow cast across studio walls",
-        caption: "SOLAR SHADOW TRANSITIONS",
-        layout: "landscape",
-      },
-      {
-        alt: "Chronicle of Light — Editorial portrait under directional beam",
-        caption: "HIGH KEY SCULPTURAL STUDY",
+        src: "/media/projects/project-02/portrait-study-01.jpg",
+        alt: "Editorial portrait photography",
+        caption: "PORTRAIT STUDY",
         layout: "portrait",
-      },
-      {
-        alt: "Chronicle of Light — Wide studio architectural composition",
-        caption: "FULL SPATIAL PERSPECTIVE",
-        layout: "wide",
       },
     ],
   },

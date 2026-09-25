@@ -10,18 +10,22 @@ interface ProjectMediaProps {
 
 function getAspectRatioClass(aspectRatio?: Project["aspectRatio"]): string {
   switch (aspectRatio) {
+    case "portrait":
+      return "aspect-[9/16] w-full max-w-[320px] sm:max-w-[360px] md:max-w-[400px]";
     case "cinema":
-      return "aspect-[2.39/1]";
+      return "aspect-[2.39/1] w-full bg-forest-dark";
     case "wide":
-      return "aspect-[21/9]";
+      return "aspect-[21/9] w-full bg-forest-dark";
     case "video":
     default:
-      return "aspect-video";
+      return "aspect-video w-full bg-forest-dark";
   }
 }
 
 function getAspectLabel(aspectRatio?: Project["aspectRatio"]): string {
   switch (aspectRatio) {
+    case "portrait":
+      return "PORTRAIT STILL";
     case "cinema":
       return "2.39 : 1 ANAMORPHIC";
     case "wide":
@@ -41,6 +45,7 @@ export default function ProjectMedia({
   className = "",
   reducedMotion = false,
 }: ProjectMediaProps) {
+  const isPortrait = project.aspectRatio === "portrait";
   const aspectClass = getAspectRatioClass(project.aspectRatio);
   const scaleHover = reducedMotion
     ? ""
@@ -59,7 +64,7 @@ export default function ProjectMedia({
   return (
     <div
       data-project-media
-      className={`relative w-full overflow-hidden bg-forest-dark ${aspectClass} ${className}`}
+      className={`relative overflow-hidden ${isPortrait ? "bg-transparent" : ""} ${aspectClass} ${className}`}
     >
       {isVideoSrc && mediaSrc ? (
         <video
@@ -77,7 +82,7 @@ export default function ProjectMedia({
         <img
           src={mediaSrc}
           alt={project.title}
-          className={`h-full w-full object-cover ${scaleHover}`}
+          className={`h-full w-full block ${isPortrait ? "object-contain" : "object-cover"} ${scaleHover}`}
         />
       ) : (
         /* Honest camera darkroom production container */
