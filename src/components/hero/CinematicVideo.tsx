@@ -27,7 +27,8 @@ export default function CinematicVideo({
       muted
       loop
       playsInline
-      poster={poster}
+      preload="metadata"
+      poster={poster || undefined}
       aria-hidden="true"
     >
       {mobileSources?.map((source) => (

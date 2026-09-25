@@ -47,8 +47,14 @@ export default function ProjectMedia({
     : "transition-transform duration-700 ease-out group-hover:scale-[1.03]";
 
   const mediaSrc =
-    project.thumbnail || project.hero.image || project.hero.poster;
-  const isVideoSrc = project.thumbnail?.endsWith(".mp4");
+    project.thumbnail ||
+    project.hero.image ||
+    project.hero.poster ||
+    project.hero.video;
+  const isVideoSrc =
+    project.thumbnail?.endsWith(".mp4") ||
+    (project.hero.type === "video" && !!project.hero.video) ||
+    mediaSrc?.endsWith(".mp4");
 
   return (
     <div
@@ -61,6 +67,7 @@ export default function ProjectMedia({
           muted
           loop
           playsInline
+          preload="metadata"
           src={mediaSrc}
           aria-hidden="true"
           className={`h-full w-full object-cover ${scaleHover}`}

@@ -6,7 +6,8 @@ export interface ProjectGalleryItem {
 }
 
 export interface ProjectHero {
-  type: "youtube" | "image";
+  type: "video" | "youtube" | "image";
+  video?: string;
   youtubeUrl?: string;
   poster?: string;
   image?: string;
@@ -45,49 +46,17 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: "01",
-    slug: "silent-horizon",
-    title: "SILENT HORIZON",
+    slug: "gram",
+    title: "GRAM",
     category: "BRAND FILM / CINEMATOGRAPHY",
     year: "2026",
     aspectRatio: "cinema",
     featured: true,
     hero: {
-      type: "youtube",
-      youtubeUrl: "https://www.youtube.com/watch?v=ScMzIvxBSi4",
-      poster: "/media/projects/silent-horizon-hero.jpg",
-      alt: "Silent Horizon — Brand Film Opening Frame",
+      type: "video",
+      video: "/media/projects/gram/gram-brand-film.mp4",
+      alt: "GRAM brand film",
     },
-    description:
-      "An atmospheric exploration of vast coastal horizons, documenting the intersection of natural silence, architectural stillness, and high-contrast light.",
-    credits: {
-      director: "DEV YADAV",
-      cinematography: "FLASH TALE STUDIO",
-      colorGrade: "KODAK 5219 EMULATION",
-      aspectRatio: "2.39:1 ANAMORPHIC",
-      year: "2026",
-    },
-    gallery: [
-      {
-        alt: "Silent Horizon — Coastal mist and natural ridge lines",
-        caption: "DAWN RIDGE STUDY",
-        layout: "wide",
-      },
-      {
-        alt: "Silent Horizon — Architectural concrete structure in fog",
-        caption: "MONOLITHIC ELEVATION",
-        layout: "portrait",
-      },
-      {
-        alt: "Silent Horizon — Horizon gradient over calm water",
-        caption: "EXTENDED TWILIGHT SEQUENCE",
-        layout: "landscape",
-      },
-      {
-        alt: "Silent Horizon — Full panoramic coastal ridge",
-        caption: "ULTRA-WIDE ANAMORPHIC HORIZON",
-        layout: "full",
-      },
-    ],
   },
   {
     id: "02",

@@ -14,7 +14,6 @@ interface HeroProps {
 }
 
 const HEADLINE_LINES = ["WE CREATE", "VISUAL STORIES", "THAT MOVE."];
-const ACCENT_LINE = "VISUAL STORIES";
 const HEADLINE_SIZE = { fontSize: "clamp(2.75rem, 7.9vw, 7.25rem)" };
 
 export default function Hero({ revealed }: HeroProps) {
@@ -124,37 +123,39 @@ export default function Hero({ revealed }: HeroProps) {
     <section
       ref={sectionRef}
       id="hero"
-      className="relative flex h-[100svh] w-full items-end overflow-hidden bg-paper sm:items-center"
+      className="relative flex h-[100svh] w-full items-end overflow-hidden bg-forest-dark sm:items-center"
     >
-      <div ref={videoWrapRef} className="absolute inset-0 opacity-20">
+      <div ref={videoWrapRef} className="absolute inset-0 z-0">
         <CinematicVideo
           sources={heroMedia.sources}
           mobileSources={heroMedia.mobileSources}
           poster={heroMedia.poster}
           className="h-full w-full object-cover"
         />
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-t from-paper via-paper/80 to-paper/40"
-        />
       </div>
+
+      {/* Localized text readability gradient: confined to text column, smoothly fading before video subject */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-y-0 left-0 z-[5] w-full max-w-3xl bg-gradient-to-t from-forest-dark/85 via-forest-dark/45 to-transparent sm:bg-gradient-to-r sm:from-forest-dark/85 sm:via-forest-dark/40 sm:to-transparent"
+      />
 
       {/* Micro UI — the intro's camera language, reduced to just REC and
        * a frame counter, sitting below the fixed nav */}
       <div
         data-hero-rest
         aria-hidden="true"
-        className="pointer-events-none absolute left-4 top-20 flex items-center gap-2 sm:left-8 sm:top-24"
+        className="pointer-events-none absolute left-4 top-20 z-10 flex items-center gap-2 sm:left-8 sm:top-24"
       >
         <span className="h-1.5 w-1.5 rounded-full bg-terracotta" />
-        <span className="font-body text-[10px] uppercase tracking-[0.25em] text-forest/70 font-semibold">
+        <span className="font-body text-[10px] uppercase tracking-[0.25em] text-cream/90 font-semibold">
           REC
         </span>
       </div>
       <div
         data-hero-rest
         aria-hidden="true"
-        className="pointer-events-none absolute right-4 top-20 font-body text-[10px] tracking-[0.2em] text-forest/50 font-semibold sm:right-8 sm:top-24"
+        className="pointer-events-none absolute right-4 top-20 z-10 font-body text-[10px] tracking-[0.2em] text-cream/70 font-semibold sm:right-8 sm:top-24"
       >
         01 / 07
       </div>
@@ -163,12 +164,12 @@ export default function Hero({ revealed }: HeroProps) {
         ref={contentRef}
         className="relative z-10 flex w-full flex-col gap-6 px-6 pb-14 sm:px-8 sm:pb-0 md:gap-8"
       >
-        <h1 className="font-display font-extrabold uppercase leading-[0.92] tracking-tight text-ink">
+        <h1 className="font-display font-extrabold uppercase leading-[0.92] tracking-tight text-cream">
           {HEADLINE_LINES.map((line) => (
             <span key={line} className="block overflow-hidden">
               <span
                 data-hero-line
-                className={`block ${line === ACCENT_LINE ? "text-ink" : "text-ink"}`}
+                className="block text-cream"
                 style={HEADLINE_SIZE}
               >
                 {line}
@@ -177,7 +178,7 @@ export default function Hero({ revealed }: HeroProps) {
           ))}
         </h1>
 
-        <p data-hero-rest className="max-w-md font-body text-sm text-ink-muted sm:text-base md:text-lg">
+        <p data-hero-rest className="max-w-md font-body text-sm text-cream/90 sm:text-base md:text-lg leading-relaxed">
           Flash Tale is a creative production studio — brand films, photography,
           and campaigns built for people who remember a good story.
         </p>
@@ -185,7 +186,7 @@ export default function Hero({ revealed }: HeroProps) {
         <a
           href="#work"
           data-hero-rest
-          className="group inline-flex w-fit items-center gap-3 font-body text-xs uppercase tracking-[0.25em] text-ink font-semibold transition-colors hover:text-terracotta"
+          className="group inline-flex w-fit items-center gap-3 font-body text-xs uppercase tracking-[0.25em] text-cream font-semibold transition-colors hover:text-terracotta"
         >
           <span className="transition-transform duration-300 ease-out group-hover:translate-x-1">
             View Our Work

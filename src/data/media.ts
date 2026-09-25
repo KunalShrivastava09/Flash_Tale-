@@ -17,11 +17,9 @@ export interface HeroMediaConfig {
 // else needs to change. Until then CinematicVideo just shows the poster
 // (or the void background if that's missing too) — no decorative filler.
 export const heroMedia: HeroMediaConfig = {
-  poster: "/media/hero-poster.jpg",
-  sources: [{ src: "/media/hero.mp4", type: "video/mp4" }],
-  mobileSources: [
-    // { src: "/media/hero-mobile.mp4", type: "video/mp4" },
-  ],
+  poster: "",
+  sources: [{ src: "/media/projects/gram/gram-brand-film.mp4", type: "video/mp4" }],
+  mobileSources: [],
 };
 
 export interface PlaceholderMediaConfig {

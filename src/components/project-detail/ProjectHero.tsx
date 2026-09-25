@@ -14,12 +14,13 @@ interface ProjectHeroProps {
  */
 export default function ProjectHero({ project }: ProjectHeroProps) {
   const [isPlaying, setIsPlaying] = useState(false);
-  const isVideo = project.hero.type === "youtube";
-  const youtubeId = extractYouTubeId(project.hero.youtubeUrl);
+  const isYouTube = project.hero.type === "youtube";
+  const isLocalVideo = project.hero.type === "video";
+  const youtubeId = isYouTube ? extractYouTubeId(project.hero.youtubeUrl) : null;
 
   return (
     <section className="relative flex h-[78vh] w-full items-center justify-center overflow-hidden bg-forest-dark sm:h-[86vh] md:h-[90vh]">
-      {isVideo && isPlaying && youtubeId ? (
+      {isYouTube && isPlaying && youtubeId ? (
         /* In-page Privacy-Enhanced YouTube Player */
         <div className="absolute inset-0 z-20 h-full w-full bg-forest-dark">
           <iframe
@@ -31,9 +32,20 @@ export default function ProjectHero({ project }: ProjectHeroProps) {
           />
         </div>
       ) : (
-        /* Poster / Opening Frame Visual */
+        /* Poster / Opening Frame Visual / Local Video */
         <div className="relative h-full w-full">
-          {project.hero.image ? (
+          {isLocalVideo && project.hero.video ? (
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              src={project.hero.video}
+              aria-hidden="true"
+              className="h-full w-full object-cover"
+            />
+          ) : project.hero.image ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
               src={project.hero.image}
@@ -84,7 +96,7 @@ export default function ProjectHero({ project }: ProjectHeroProps) {
           >
             <span className="h-1.5 w-1.5 rounded-full bg-terracotta" />
             <span className="font-body text-[10px] uppercase tracking-[0.25em] text-cream/80 font-semibold">
-              {isVideo ? "4K MASTER" : "HIGH-RES STILL"}
+              {isYouTube || isLocalVideo ? "4K MASTER" : "HIGH-RES STILL"}
             </span>
           </div>
 
@@ -95,8 +107,8 @@ export default function ProjectHero({ project }: ProjectHeroProps) {
             {project.id} / 05
           </div>
 
-          {/* Play Trigger for Video Projects */}
-          {isVideo && (
+          {/* Play Trigger for YouTube Video Projects */}
+          {isYouTube && (
             <div className="absolute inset-0 flex items-center justify-center">
               <button
                 type="button"
